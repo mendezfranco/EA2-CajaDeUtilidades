@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Caja de Utilidades - EA2</string>
+    <string name="botonIngreso">Ingresar</string>
+    <string name="botonActivityRegistro">Registrarse</string>
+    <string name="user">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="mensajeBienvenida">Bienvenido a la Caja de Utilidades</string>
+    <string name="mensajeIngreso">Ingreso al Sistema</string>
+    <string name="mensajeIngreso2">Por favor, ingrese sus credenciales o regístrese si aún no lo ha hecho</string>
+    <string name="textRegistro">Registrarse en el Sistema</string>
+    <string name="nombreRegistro">Nombre</string>
+    <string name="apellidoRegistro">Apellido</string>
+    <string name="dniRegistro">DNI</string>
+    <string name="emailRegistro">Email</string>
+    <string name="contraseñaRegistro">Contraseña</string>
+    <string name="comisionRegistro">Comision</string>
+    <string name="botonRegistro">Registrarse</string>
+    <string name="porcentaje">Porcentaje de Batería</string>
+    <string name="cuentapasos">Utilidad Cuentapasos</string>
+    <string name="smartorch">Utilidad Linterna Inteligente</string>
+    <string name="textAcelerometro">Estado Sensor Acelerómetro</string>
+    <string name="textActivityIluminacion">Valores del Sensor de Luz detectados:</string>
+    <string name="botonActivityIluminacion">Linterna Inteligente</string>
+    <string name="textPasos">Cantidad de Pasos:</string>
+    <string name="textIngreso1">Bienvenido</string>
+    <string name="textIngreso2">Seleccione la utilidad que desea iniciar</string>
+    <string name="buttonCuentaPasos">Contador de Pasos</string>
+    <string name="buttonLinternaInteligente">Linterna Inteligente</string>
+    <string name="txtVolver">Volver</string>
+    <string name="botonSalir">Salir</string>
+
+</resources>
