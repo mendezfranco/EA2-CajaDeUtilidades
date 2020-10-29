@@ -8,5 +8,6 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="mi_rojo">#AE1C1C</color>
-    <color name="mi_default">#E46B6DE1</color>
+    <color name="mi_default">#E47678FF</color>
+    <color name="mi_ocre">#EBFF9800</color>
 </resources>

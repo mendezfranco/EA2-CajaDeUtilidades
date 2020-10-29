@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Request {
@@ -78,6 +79,31 @@ public class Request {
 
         request.disconnect();
         Log.i("Registracion-Response", response);
+        return response;
+    }
+
+    public static String generarRequestServicioExterno(String ep, String method) throws IOException {
+        endpoint = new URL(ep);
+        request = (HttpURLConnection)endpoint.openConnection();
+
+        request.setRequestMethod(method);
+
+        request.connect();
+
+        responseCode = request.getResponseCode();
+
+        BufferedReader in;
+        if(responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED){
+            in = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        }
+        else{
+            in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
+        }
+
+        response = convertResponseToInt(in).toString();
+
+        request.disconnect();
+        Log.i("Weather-Response", response);
         return response;
     }
 

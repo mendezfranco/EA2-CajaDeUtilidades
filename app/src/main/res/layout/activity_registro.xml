@@ -10,11 +10,12 @@
         android:id="@+id/textRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginLeft="108dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
         android:layout_marginTop="44dp"
         android:text="@string/textRegistro"
-        android:textSize="17sp"
+        android:textColor="@color/mi_ocre"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,11 +88,12 @@
         android:id="@+id/botonRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="36dp"
         android:onClick="registrarse"
         android:text="@string/botonRegistro"
+        app:backgroundTint="@color/mi_default"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comisionRegistro" />
 

@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity{
 
             eventRegisterThread = new EventRegisterRequestThread(responseJson.getString("token"), body);
             eventRegisterThread.start();
-            iniciarActivityIngreso(token);
         }
     }
 
@@ -101,10 +100,10 @@ public class MainActivity extends AppCompatActivity{
 
     public void validarRegistroDeEvento(JSONObject responseJson) throws JSONException {
         if(!responseJson.getString("success").equals("true")){
-            Toast.makeText(this, "Se pudo registrar el evento Login en el servidor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No se pudo registrar el evento Login en el servidor", Toast.LENGTH_SHORT).show();
         }
         else{
-            //iniciarActivityIngreso(token);
+            iniciarActivityIngreso(token);
         }
     }
 

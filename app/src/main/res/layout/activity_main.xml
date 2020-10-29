@@ -14,20 +14,21 @@
         android:layout_marginLeft="68dp"
         android:layout_marginTop="48dp"
         android:text="@string/mensajeBienvenida"
-        android:textColor="@color/mi_default"
+        android:textColor="@color/mi_ocre"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonIngreso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginLeft="136dp"
+        android:layout_marginTop="60dp"
         android:onClick="logueo"
         android:text="@string/botonIngreso"
+        app:backgroundTint="@color/mi_default"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contraseña" />
 
@@ -77,9 +78,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
         android:layout_marginLeft="136dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="148dp"
         android:onClick="iniciarActivityRegistro"
-        android:text="@string/botonRegistro"
+        android:text="@string/botonIniciarRegistro"
+        app:backgroundTint="@color/mi_default"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contraseña" />
 

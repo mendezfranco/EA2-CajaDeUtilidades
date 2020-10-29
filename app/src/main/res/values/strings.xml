@@ -7,6 +7,7 @@
     <string name="mensajeBienvenida">Bienvenido a la Caja de Utilidades</string>
     <string name="mensajeIngreso">Ingreso al Sistema</string>
     <string name="mensajeIngreso2">Por favor, ingrese sus credenciales o regístrese si aún no lo ha hecho</string>
+    <string name="botonIniciarRegistro">Registrarse</string>
     <string name="textRegistro">Registrarse en el Sistema</string>
     <string name="nombreRegistro">Nombre</string>
     <string name="apellidoRegistro">Apellido</string>
@@ -14,8 +15,10 @@
     <string name="emailRegistro">Email</string>
     <string name="contraseñaRegistro">Contraseña</string>
     <string name="comisionRegistro">Comision</string>
-    <string name="botonRegistro">Registrarse</string>
+    <string name="botonRegistro">Aceptar</string>
     <string name="porcentaje">Porcentaje de Batería</string>
+    <string name="temperatura">Temp en Bs As</string>
+    <string name="loading">Cargando...</string>
     <string name="cuentapasos">Utilidad Cuentapasos</string>
     <string name="smartorch">Utilidad Linterna Inteligente</string>
     <string name="textAcelerometro">Estado Sensor Acelerómetro</string>
