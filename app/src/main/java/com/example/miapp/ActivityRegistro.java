@@ -36,12 +36,12 @@ public class ActivityRegistro extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        nombreNewUser = (EditText)findViewById(R.id.nombreRegistro);
-        apellidoNewUser = (EditText)findViewById(R.id.apellidoRegistro);
-        dniNewUser = (EditText)findViewById(R.id.dniRegistro);
-        emailNewUser = (EditText)findViewById(R.id.emailRegistro);
-        contraseñaNewUser = (EditText)findViewById(R.id.contraseñaRegistro);
-        comisionNewUser = (EditText)findViewById(R.id.comisionRegistro);
+        nombreNewUser = findViewById(R.id.nombreRegistro);
+        apellidoNewUser = findViewById(R.id.apellidoRegistro);
+        dniNewUser = findViewById(R.id.dniRegistro);
+        emailNewUser = findViewById(R.id.emailRegistro);
+        contraseñaNewUser = findViewById(R.id.contraseñaRegistro);
+        comisionNewUser = findViewById(R.id.comisionRegistro);
         popupError = new AlertDialog.Builder(ActivityRegistro.this);
 
         popupError.setTitle("Error");
@@ -74,12 +74,7 @@ public class ActivityRegistro extends AppCompatActivity{
 
     }
 
-    public void volverALoginActivity(ActivityRegistro vistaRegistro){
-        Intent loginIntent = new Intent(this, MainActivity.class);
-        startActivity(loginIntent);
-    }
-
-    public void iniciarActivityIngreso(String token) throws JSONException {
+    public void iniciarActivityIngreso(String token) {
         Intent intentIngreso = new Intent(this, ActivityIngreso.class);
         intentIngreso.putExtra("token", token);
 
@@ -157,7 +152,7 @@ public class ActivityRegistro extends AppCompatActivity{
     }
 
     public void validarRegistro(JSONObject response) throws JSONException {
-        if(response.getString("success") != "true"){
+        if(!response.getString("success").equals("true")){
             popupError.create().show();
         }
         else{
@@ -178,7 +173,7 @@ public class ActivityRegistro extends AppCompatActivity{
     }
 
     public void validarRegistroDeEvento(JSONObject responseJson) throws JSONException {
-        if(responseJson.getString("success") != "true"){
+        if(!responseJson.getString("success").equals("true")){
             Toast.makeText(this, "No pudo registrarse el evento de Registro nuevo en el servidor", Toast.LENGTH_SHORT).show();
         }
         else{

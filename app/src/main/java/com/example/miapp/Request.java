@@ -23,7 +23,6 @@ public class Request {
         endpoint = new URL(ep);
         request = (HttpURLConnection)endpoint.openConnection();
 
-        request.setDoInput(true);
         request.setDoOutput(true);
         request.setRequestMethod("POST");
         request.setRequestProperty("Content-Type","application/json");

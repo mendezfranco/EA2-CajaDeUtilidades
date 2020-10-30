@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class ActivityAcelerometro extends AppCompatActivity implements SensorEventListener {
-    public TextView valorX, valorY, valorZ, pasosTextView;
+    public TextView valorX, valorY, valorZ, pasosTextView, historialpasosTextView;
     private SensorManager manager;
     Sensor acelerometro;
     private double valorAceleracionAnterior = 0;
@@ -41,6 +42,7 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         valorY = findViewById(R.id.valorY);
         valorZ = findViewById(R.id.valorZ);
         pasosTextView = findViewById(R.id.valorPasos);
+        historialpasosTextView = findViewById(R.id.historialDePasos);
 
         manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         acelerometro = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -54,11 +56,10 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+        /*SharedPreferencesThread threadObtencionDeHistorial = new SharedPreferencesThread();
+        threadObtencionDeHistorial.start();*/
+        cargarListaDePasos();
     }
 
     @Override
@@ -86,15 +87,26 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
     protected void onPause() {
         super.onPause();
         manager.unregisterListener(this);
+        almacenarEnSharedPreferences(stepCount);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         manager.registerListener(ActivityAcelerometro.this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
+        cargarListaDePasos();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        manager.unregisterListener(this);
+        almacenarEnSharedPreferences(stepCount);
     }
 
     public void volverAtras(View view) {
+        almacenarEnSharedPreferences(stepCount);
         Intent intentIngreso = new Intent(this, ActivityIngreso.class);
         intentIngreso.putExtra("token", String.valueOf(tokenUsuario));
 
@@ -127,6 +139,21 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         startActivity(intentLogin);
     }
 
+    public void almacenarEnSharedPreferences(int cantidadDePasos){
+        SharedPreferences misSharedPreferences = getSharedPreferences("MarcaDePasosAnteriores", Context.MODE_PRIVATE);
+        SharedPreferences.Editor modificador = misSharedPreferences.edit();
+
+        modificador.putInt("Cantidad de Pasos", cantidadDePasos);
+        modificador.commit();
+    }
+
+    public void cargarListaDePasos(){
+        SharedPreferences misSharedPreferences = getSharedPreferences("MarcaDePasosAnteriores", Context.MODE_PRIVATE);
+
+        int pasos = misSharedPreferences.getInt("Cantidad de Pasos", 0);
+        historialpasosTextView.setText(String.valueOf(pasos));
+    }
+
     class EventRegisterRequestThread extends Thread{
         // Instancio un handler para el thread, y lo asocio al hilo principal a través del Looper
         private Handler threadHandler = new Handler(Looper.getMainLooper());
@@ -154,6 +181,20 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
+            });
+        }
+    }
+
+    class SharedPreferencesThread extends Thread{
+        // Instancio un handler para el thread, y lo asocio al hilo principal a través del Looper
+        private Handler threadHandler = new Handler(Looper.getMainLooper());
+
+        public void run(){
+            threadHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    cargarListaDePasos();
                 }
             });
         }
