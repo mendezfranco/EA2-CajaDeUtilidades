@@ -44,7 +44,7 @@ public class Request {
 
         request.disconnect();
 
-        Log.i("Result", response);
+        Log.i("Autenticacion-Response", response);
         return response;
     }
 

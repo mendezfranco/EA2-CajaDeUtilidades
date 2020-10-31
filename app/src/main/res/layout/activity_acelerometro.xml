@@ -111,8 +111,8 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="357dp"
-        android:layout_height="36dp"
+        android:layout_width="222dp"
+        android:layout_height="34dp"
         android:layout_marginTop="28dp"
         android:text="@string/textPasosAnteriores"
         android:textColor="@color/mi_ocre"

@@ -43,7 +43,8 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iluminacion);
-        tokenUsuario = getIntent().getStringExtra("token");
+
+        tokenUsuario = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDY3NTA0NTEsInR5cGUiOiJpbmljaWFsIiwidXNlciI6eyJlbWFpbCI6ImZybWVuZGV6QGFsdW1uby51bmxhbS5lZHUuYXIiLCJkbmkiOjM5OTEzNTQzfX0.cGL3_2IL3fS0SzwS9Aq6Ja7yZlBeLcaffwxFu0fkOyY";//getIntent().getStringExtra("token");
         Log.i("Token-Usuario", tokenUsuario);
 
         valoresTextView = findViewById(R.id.lightSensorTextView);
@@ -135,7 +136,7 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
 
     public void validarRegistroDeEvento(JSONObject responseJson) throws JSONException {
         Log.i("Registro de evento",responseJson.toString());
-        if(responseJson.getString("success") != "true"){
+        if(!responseJson.getString("success").equals("true")){
             Toast.makeText(this, "No pudo registrarse la actividad del sensor en el servidor. Debe volver a ingresar", Toast.LENGTH_SHORT).show();
             volverALogin();
         }
@@ -152,7 +153,7 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
 
     public JSONObject armarRequestBody() throws JSONException {
         JSONObject body = new JSONObject();
-        body.put("env", "TEST");
+        body.put("env", "PROD");
         body.put("type_events", "Sensando actividad de Sensor de Luz");
         body.put("description", "El usuario accedio a la utilidad Linterna Inteligente. Se activo el sensor de luminosidad");
 

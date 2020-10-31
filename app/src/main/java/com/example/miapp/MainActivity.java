@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void validarIngreso(JSONObject responseJson) throws JSONException {
-        Log.i("Thread Name:",Thread.currentThread().getName());
+
         if(!responseJson.getString("success").equals("true")){
             popupError.create().show();
         }
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity{
 
             //Armo el body para la nueva request
             body = new JSONObject();
-            body.put("env", "TEST");
+            body.put("env", "PROD");
             body.put("type_events", "Login al sistema");
             body.put("description", "Se logueo un usuario en el sistema");
 
@@ -83,8 +83,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    public void iniciarActivityIngreso(String token) throws JSONException {
-        Log.i("Thread Name:",Thread.currentThread().getName());
+    public void iniciarActivityIngreso(String token) {
         Intent intentIngreso = new Intent(this, ActivityIngreso.class);
         intentIngreso.putExtra("token", String.valueOf(token));
 

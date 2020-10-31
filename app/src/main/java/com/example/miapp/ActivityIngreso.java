@@ -99,7 +99,7 @@ public class ActivityIngreso extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        JSONArray jsonArray = respuestaJson.getJSONArray("data");
+                        JSONArray jsonArray = respuestaJson.getJSONArray("data"); // Parseo de la respuesta
                         temperaturaObtenida = jsonArray.getJSONObject(0).optString("temp") + " ºC";
                         mostrarTemperatura(temperaturaObtenida);
                     } catch (JSONException e) {

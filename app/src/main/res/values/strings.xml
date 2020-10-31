@@ -25,7 +25,7 @@
     <string name="textActivityIluminacion">Valores del Sensor de Luz detectados:</string>
     <string name="botonActivityIluminacion">Linterna Inteligente</string>
     <string name="textPasos">Cantidad de Pasos:</string>
-    <string name="textPasosAnteriores">Cantidad de pasos realizados en la ejecución anterior del Cuentapasos:</string>
+    <string name="textPasosAnteriores">Marca anterior del Cuentapasos:</string>
     <string name="textIngreso1">Bienvenido</string>
     <string name="textIngreso2">Seleccione la utilidad que desea iniciar</string>
     <string name="buttonCuentaPasos">Contador de Pasos</string>

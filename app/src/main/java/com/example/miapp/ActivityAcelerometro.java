@@ -35,9 +35,9 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acelerometro);
+
         tokenUsuario = getIntent().getStringExtra("token");
         Log.i("Token-Usuario", tokenUsuario);
-        JSONObject body = new JSONObject();
 
         valorX = findViewById(R.id.valorX);
         valorY = findViewById(R.id.valorY);
@@ -50,7 +50,6 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         acelerometro = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         manager.registerListener(ActivityAcelerometro.this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
-        Log.i("Thread Name:",Thread.currentThread().getName());
 
         try {
             registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
@@ -87,6 +86,7 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
     @Override
     protected void onPause() {
         super.onPause();
+
         manager.unregisterListener(this);
         almacenarEnSharedPreferences(stepCount);
     }
@@ -102,6 +102,7 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         manager.unregisterListener(this);
         almacenarEnSharedPreferences(stepCount);
     }
@@ -116,7 +117,7 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
 
     public JSONObject armarRequestBody() throws JSONException {
         JSONObject body = new JSONObject();
-        body.put("env", "TEST");
+        body.put("env", "PROD");
         body.put("type_events", "Sensando actividad de Acelerometro");
         body.put("description", "El usuario accedio a la utilidad Cuentapasos. Se activo el acelerometro");
 
@@ -125,8 +126,8 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
 
     public void validarRegistroDeEvento(JSONObject responseJson) throws JSONException {
         Log.i("Registro de evento",responseJson.toString());
-        if(responseJson.getString("success") != "true"){
-            Toast.makeText(this, "No pudo registrarse la actividad del sensor en el servidor. Debe volver a ingresar", Toast.LENGTH_SHORT).show();
+        if(!responseJson.getString("success").equals("true")){
+            Toast.makeText(this, "Su tiempo de sesión (Token) ha expirado. Debe volver a ingresar", Toast.LENGTH_SHORT).show();
             volverALogin();
         }
         else{
