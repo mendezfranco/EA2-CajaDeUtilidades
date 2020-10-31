@@ -44,7 +44,7 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iluminacion);
 
-        tokenUsuario = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDY3NTA0NTEsInR5cGUiOiJpbmljaWFsIiwidXNlciI6eyJlbWFpbCI6ImZybWVuZGV6QGFsdW1uby51bmxhbS5lZHUuYXIiLCJkbmkiOjM5OTEzNTQzfX0.cGL3_2IL3fS0SzwS9Aq6Ja7yZlBeLcaffwxFu0fkOyY";//getIntent().getStringExtra("token");
+        tokenUsuario = getIntent().getStringExtra("token");
         Log.i("Token-Usuario", tokenUsuario);
 
         valoresTextView = findViewById(R.id.lightSensorTextView);

@@ -89,7 +89,7 @@ public class ActivityIngreso extends AppCompatActivity {
 
         public void run(){
             try {
-                String result = Request.generarRequestServicioExterno("https://api.weatherbit.io/v2.0/current?city=Buenos%20Aires&country=AR&key=1b0971b6bb394339ad0f4d94b0f593c", "GET");
+                String result = Request.generarRequestServicioExterno("https://api.weatherbit.io/v2.0/current?city=Buenos%20Aires&country=AR&key=1b0971b6bb394339ad0f4d94b0f593ce", "GET");
                 respuestaJson = new JSONObject(result);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
