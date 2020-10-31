@@ -24,6 +24,7 @@ public class ActivityIngreso extends AppCompatActivity {
     public TextView porcentajeBateria, temperatura;
     private String tokenUsuario;
     public ImageView imagenCargando;
+    public RequestThread weatherRequestThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class ActivityIngreso extends AppCompatActivity {
         tokenUsuario = getIntent().getStringExtra("token");
         Log.i("Token-Usuario", tokenUsuario);
 
-        RequestThread weatherRequestThread = new RequestThread();
+        weatherRequestThread = new RequestThread();
         weatherRequestThread.start();
     }
 

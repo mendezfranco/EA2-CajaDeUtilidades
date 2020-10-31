@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity{
         try{
             body.put("email", username.getText().toString());
             body.put("password", password.getText().toString());
-            Log.i("Thread Name:",Thread.currentThread().getName());
 
             Toast.makeText(this, "Validando datos de Usuario. Cargando...", Toast.LENGTH_SHORT).show();
             loginThread = new LoginRequestThread();

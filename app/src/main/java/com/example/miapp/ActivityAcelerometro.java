@@ -29,6 +29,7 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
     private double valorAceleracionAnterior = 0;
     private int stepCount = 0;
     private String tokenUsuario;
+    public EventRegisterRequestThread registerRequestThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         pasosTextView = findViewById(R.id.valorPasos);
         historialpasosTextView = findViewById(R.id.historialDePasos);
 
+        cargarListaDePasos();
         manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         acelerometro = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
@@ -51,7 +53,7 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         Log.i("Thread Name:",Thread.currentThread().getName());
 
         try {
-            EventRegisterRequestThread registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
+            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
             registerRequestThread.start();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -59,7 +61,6 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
 
         /*SharedPreferencesThread threadObtencionDeHistorial = new SharedPreferencesThread();
         threadObtencionDeHistorial.start();*/
-        cargarListaDePasos();
     }
 
     @Override

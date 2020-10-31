@@ -9,7 +9,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Request {
@@ -41,7 +40,7 @@ public class Request {
             in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
         }
 
-        response = convertResponseToInt(in).toString();
+        response = convertResponseToString(in).toString();
 
         request.disconnect();
 
@@ -74,7 +73,7 @@ public class Request {
             in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
         }
 
-        response = convertResponseToInt(in).toString();
+        response = convertResponseToString(in).toString();
 
         request.disconnect();
         Log.i("Registracion-Response", response);
@@ -99,14 +98,14 @@ public class Request {
             in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
         }
 
-        response = convertResponseToInt(in).toString();
+        response = convertResponseToString(in).toString();
 
         request.disconnect();
         Log.i("Weather-Response", response);
         return response;
     }
 
-    public static StringBuffer convertResponseToInt(BufferedReader input) throws IOException {
+    public static StringBuffer convertResponseToString(BufferedReader input) throws IOException {
         String inputLine;
         StringBuffer stringResponse = new StringBuffer();
 

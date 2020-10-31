@@ -36,6 +36,7 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
     Sensor sensorLuz;
     CameraManager camaraUtils;
     private String tokenUsuario;
+    public EventRegisterRequestThread registerRequestThread;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -60,7 +61,7 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
         }
 
         try {
-            EventRegisterRequestThread registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
+            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
             registerRequestThread.start();
         } catch (JSONException e) {
             e.printStackTrace();
