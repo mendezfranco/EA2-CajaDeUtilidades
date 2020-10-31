@@ -57,9 +57,6 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        /*SharedPreferencesThread threadObtencionDeHistorial = new SharedPreferencesThread();
-        threadObtencionDeHistorial.start();*/
     }
 
     @Override
@@ -183,20 +180,6 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-            });
-        }
-    }
-
-    class SharedPreferencesThread extends Thread{
-        // Instancio un handler para el thread, y lo asocio al hilo principal a través del Looper
-        private Handler threadHandler = new Handler(Looper.getMainLooper());
-
-        public void run(){
-            threadHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    cargarListaDePasos();
                 }
             });
         }
