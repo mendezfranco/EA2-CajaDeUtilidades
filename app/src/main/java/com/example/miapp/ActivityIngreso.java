@@ -82,6 +82,9 @@ public class ActivityIngreso extends AppCompatActivity {
         if(!temperaturaObtenida.equals(" ")){
             imagenCargando.setVisibility(View.GONE);
         }
+        else{
+            Toast.makeText(this, "Error obteniendo temperatura actual",  Toast.LENGTH_SHORT).show();
+        }
         temperatura.setText(temperaturaObtenida);
     }
 
@@ -105,9 +108,11 @@ public class ActivityIngreso extends AppCompatActivity {
                     try {
                         JSONArray jsonArray = respuestaJson.getJSONArray("data"); // Parseo de la respuesta
                         temperaturaObtenida = jsonArray.getJSONObject(0).optString("temp") + " ºC";
-                        mostrarTemperatura(temperaturaObtenida);
                     } catch (JSONException e) {
                         e.printStackTrace();
+                    }
+                    finally {
+                        mostrarTemperatura(temperaturaObtenida);
                     }
                 }
             });

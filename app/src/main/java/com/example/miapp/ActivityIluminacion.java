@@ -183,6 +183,11 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
                 respuestaJson = new JSONObject(result);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
+                try {
+                    respuestaJson = new JSONObject("{'success':'false'}");
+                } catch (JSONException jsonException) {
+                    jsonException.printStackTrace();
+                }
             }
 
             threadHandler.post(new Runnable() {
