@@ -38,8 +38,6 @@ public class ActivityIngreso extends AppCompatActivity {
         tokenUsuario = getIntent().getStringExtra("token");
         Log.i("Token-Usuario", tokenUsuario);
 
-        weatherRequestThread = new RequestThread();
-        weatherRequestThread.start();
     }
 
     @Override
@@ -72,6 +70,12 @@ public class ActivityIngreso extends AppCompatActivity {
         Intent intentLogin = new Intent(this, MainActivity.class);
 
         startActivity(intentLogin);
+    }
+
+    public void obtenerTemperatura(View vista){
+        weatherRequestThread = new RequestThread();
+        weatherRequestThread.start();
+        Toast.makeText(this, "Obteniendo temperatura actual en Buenos Aires",  Toast.LENGTH_SHORT).show();
     }
 
     public void mostrarTemperatura(String temperaturaObtenida){

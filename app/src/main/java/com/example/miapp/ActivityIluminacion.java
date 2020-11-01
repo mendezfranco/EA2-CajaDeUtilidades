@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ import java.io.IOException;
 public class ActivityIluminacion extends AppCompatActivity implements SensorEventListener {
     private SensorManager manager;
     private TextView valoresTextView, estadoLinterna;
+    private Button registrarButton;
     Sensor sensorLuz;
     CameraManager camaraUtils;
     private String tokenUsuario;
@@ -49,6 +51,7 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
 
         valoresTextView = findViewById(R.id.lightSensorTextView);
         estadoLinterna = findViewById(R.id.linternaTextView);
+        registrarButton = findViewById(R.id.btnRegistrarAcelerometro);
 
         camaraUtils = (CameraManager)getSystemService(CAMERA_SERVICE);
 
@@ -59,13 +62,6 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
 
         if(!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY) || getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)){
             Toast.makeText(ActivityIluminacion.this, "Su smartphone no cuenta con las características necesarias para ejecutar esta funcion", Toast.LENGTH_SHORT);
-        }
-
-        try {
-            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
-            registerRequestThread.start();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 
@@ -123,6 +119,16 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
         try {
             camaraUtils.setTorchMode(camaraUtils.getCameraIdList()[0], false);
         } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void registrarEvento(View view){
+        try {
+            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
+            registerRequestThread.start();
+            Toast.makeText(this, "Registrando actividad del sensor en el servidor. Aguarde.", Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

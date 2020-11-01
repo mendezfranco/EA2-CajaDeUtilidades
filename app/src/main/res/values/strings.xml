@@ -32,5 +32,7 @@
     <string name="buttonLinternaInteligente">Linterna Inteligente</string>
     <string name="txtVolver">Volver</string>
     <string name="botonSalir">Salir</string>
+    <string name="txtRegistrar">Registrar Evento</string>
+    <string name="txtBotonTemperatura">Obtener temperatura actual</string>
 
 </resources>

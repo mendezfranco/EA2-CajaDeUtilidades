@@ -50,13 +50,6 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         acelerometro = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         manager.registerListener(ActivityAcelerometro.this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
-
-        try {
-            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
-            registerRequestThread.start();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -110,6 +103,16 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
         intentIngreso.putExtra("token", String.valueOf(tokenUsuario));
 
         startActivity(intentIngreso);
+    }
+
+    public void registrarEvento(View view){
+        try {
+            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
+            registerRequestThread.start();
+            Toast.makeText(this, "Registrando actividad del sensor en el servidor. Aguarde.", Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public JSONObject armarRequestBody() throws JSONException {
