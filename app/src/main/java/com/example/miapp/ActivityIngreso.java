@@ -73,9 +73,14 @@ public class ActivityIngreso extends AppCompatActivity {
     }
 
     public void obtenerTemperatura(View vista){
-        weatherRequestThread = new RequestThread();
-        weatherRequestThread.start();
-        Toast.makeText(this, "Obteniendo temperatura actual en Buenos Aires",  Toast.LENGTH_SHORT).show();
+        if(Conexion.validarConexionAInternet(this)) {
+            weatherRequestThread = new RequestThread();
+            weatherRequestThread.start();
+            Toast.makeText(this, "Obteniendo temperatura actual en Buenos Aires", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Para obtener los valores de temperatura necesita estar conectado a internet", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void mostrarTemperatura(String temperaturaObtenida){

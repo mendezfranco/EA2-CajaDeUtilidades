@@ -125,9 +125,14 @@ public class ActivityIluminacion extends AppCompatActivity implements SensorEven
 
     public void registrarEvento(View view){
         try {
-            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
-            registerRequestThread.start();
-            Toast.makeText(this, "Registrando actividad del sensor en el servidor. Aguarde.", Toast.LENGTH_SHORT).show();
+            if(Conexion.validarConexionAInternet(this)) {
+                registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
+                registerRequestThread.start();
+                Toast.makeText(this, "Registrando actividad del sensor en el servidor. Aguarde.", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, "Por favor, conectese a Internet para registrar el evento deseado", Toast.LENGTH_SHORT).show();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

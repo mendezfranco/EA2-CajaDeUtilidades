@@ -9,6 +9,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -107,9 +109,14 @@ public class ActivityAcelerometro extends AppCompatActivity implements SensorEve
 
     public void registrarEvento(View view){
         try {
-            registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
-            registerRequestThread.start();
-            Toast.makeText(this, "Registrando actividad del sensor en el servidor. Aguarde.", Toast.LENGTH_SHORT).show();
+            if(Conexion.validarConexionAInternet(this)){
+                registerRequestThread = new EventRegisterRequestThread(tokenUsuario, armarRequestBody());
+                registerRequestThread.start();
+                Toast.makeText(this, "Registrando actividad del sensor en el servidor. Aguarde.", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, "Por favor, conectese a Internet para registrar el evento deseado", Toast.LENGTH_SHORT).show();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
